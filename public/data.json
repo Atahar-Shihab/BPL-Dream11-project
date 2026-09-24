@@ -1,0 +1,62 @@
+[
+  {
+    "playerName": "Virat Kohli",
+    "playerCountry": "India",
+    "playerType": "Batsman",
+    "rating": 9.8,
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm medium",
+    "price": 500,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  },
+  {
+    "playerName": "Babar Azam",
+    "playerCountry": "Pakistan",
+    "playerType": "Batsman",
+    "rating": 9.5,
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "price": 1500,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  },
+  {
+    "playerName": "Ben Stokes",
+    "playerCountry": "England",
+    "playerType": "All-Rounder",
+    "rating": 9.3,
+    "battingStyle": "Left-hand bat",
+    "bowlingStyle": "Right-arm fast-medium",
+    "price": 2500,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  },
+  {
+    "playerName": "Kane Williamson",
+    "playerCountry": "New Zealand",
+    "playerType": "Batsman",
+    "rating": 9.2,
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm offbreak",
+    "price": 1100000,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  },
+  {
+    "playerName": "Rashid Khan",
+    "playerCountry": "Afghanistan",
+    "playerType": "Bowler",
+    "rating": 9.6,
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "Right-arm legbreak",
+    "price": 1300000,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  },
+  {
+    "playerName": "Jos Buttler",
+    "playerCountry": "England",
+    "playerType": "Wicketkeeper-Batsman",
+    "rating": 9.4,
+    "battingStyle": "Right-hand bat",
+    "bowlingStyle": "N/A",
+    "price": 1250000,
+    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+  }
+]
