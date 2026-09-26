@@ -6,7 +6,7 @@ import SelectedPlayers from './SelectedPlayers';
 
 const Players = ({ players,coin, setCoin }) => {
     const data = use(players);
-
+    const [pl,setPl] = useState([]);
     const [selectedType, setSelectedType] = useState("available");
 
     const handleTypeChange = (type) => {
@@ -25,16 +25,16 @@ const Players = ({ players,coin, setCoin }) => {
             </div>
             <div className="flex">
             <button onClick={() => handleTypeChange("available")} className={`btn btn-sm ${selectedType === "available" ? "bg-[#E7FE29]" : "bg-gray-300"} rounded-r-none rounded-l-2xl m-auto`}>Available</button>
-            <button onClick={() => handleTypeChange("selected")} className={`btn btn-sm ${selectedType === "selected" ? "bg-[#E7FE29]" : "bg-gray-300"} rounded-l-none rounded-r-2xl m-auto`} >Selected(0)</button>
+            <button onClick={() => handleTypeChange("selected")} className={`btn btn-sm ${selectedType === "selected" ? "bg-[#E7FE29]" : "bg-gray-300"} rounded-l-none rounded-r-2xl m-auto`} >Selected({pl.length})</button>
             </div>
             </div>
 
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center">
             {
                 selectedType === "available" ? (
-                    data.map(player => <AvailablePlayer key={player.id} data={player} coin={coin} setCoin={setCoin} />)
+                    data.map(player => <AvailablePlayer pl={pl} setPl={setPl} key={player.id} data={player} coin={coin} setCoin={setCoin} />)
                 ) : (
-                    <SelectedPlayers/>
+                    <SelectedPlayers pl={pl} setPl={setPl} />
                     
                 )
             }

@@ -1,9 +1,8 @@
 // import React from 'react'; 
 import { FaUser,FaFlag } from "react-icons/fa";
 import { useState } from 'react';
-const AvailablePlayer = ({data, coin, setCoin}) => {
+const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
     console.log(data);
-
     const [chosen, setChosen] = useState(false);
 
     const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
@@ -41,7 +40,7 @@ const AvailablePlayer = ({data, coin, setCoin}) => {
       <button onClick={() => {
         if (!chosen && coin >= price) {
           setChosen(true);
-
+          setPl([...pl, data]);
           setCoin(coin - price);
         }
         else{
