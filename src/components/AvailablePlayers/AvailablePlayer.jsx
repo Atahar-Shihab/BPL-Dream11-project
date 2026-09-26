@@ -1,8 +1,10 @@
 // import React from 'react'; 
 import { FaUser,FaFlag } from "react-icons/fa";
-const AvailablePlayer = ({data}) => {
+import { useState } from 'react';
+const AvailablePlayer = ({data, coin, setCoin}) => {
     console.log(data);
 
+    const [chosen, setChosen] = useState(false);
 
     const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
 
@@ -21,7 +23,7 @@ const AvailablePlayer = ({data}) => {
         <p className="">{playerCountry}</p>
         
         </div>
-       <button className="btn btn-ghost">{playerType}</button>
+       <button className="btn btn-ghost hover:aura-golden">{playerType}</button>
  
     </div>
     <div className="divider"></div>
@@ -36,7 +38,16 @@ const AvailablePlayer = ({data}) => {
     </div>
     <div className="card-actions justify-between items-center">
       <p className="font-semibold">Price: ${price}</p>
-      <button className="btn">Choose Player</button>
+      <button onClick={() => {
+        if (!chosen && coin >= price) {
+          setChosen(true);
+
+          setCoin(coin - price);
+        }
+        else{
+          alert("Not enough coins to select this player or player already selected.");
+}
+      }} className={`btn ${chosen ? 'btn-disabled' : 'btn-outline btn-success'}`} >{chosen ? "Selected" : "Choose Player"}</button>
     </div>
   </div>
 </div>

@@ -2,8 +2,9 @@
 import { use } from 'react';
 import AvailablePlayer from '../AvailablePlayers/AvailablePlayer';
 import { useState } from 'react';
+import SelectedPlayers from './SelectedPlayers';
 
-const Players = ({ players }) => {
+const Players = ({ players,coin, setCoin }) => {
     const data = use(players);
 
     const [selectedType, setSelectedType] = useState("available");
@@ -31,12 +32,10 @@ const Players = ({ players }) => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center">
             {
                 selectedType === "available" ? (
-                    data.map(player => <AvailablePlayer key={player.id} data={player} />)
+                    data.map(player => <AvailablePlayer key={player.id} data={player} coin={coin} setCoin={setCoin} />)
                 ) : (
+                    <SelectedPlayers/>
                     
-                    <div className="col-start-2 flex justify-center my-8 items-center bg-red-300 rounded-2xl p-4">
-                        <h2 className="text-2xl font-bold">No players selected yet.</h2>
-                    </div>
                 )
             }
             

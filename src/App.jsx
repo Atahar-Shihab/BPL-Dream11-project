@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Banner from './components/banner/Banner';
 
 import Players from './components/players/Players';
-import { Suspense } from 'react';
+import { Suspense,useState } from 'react';
 
 
 const fetchPlayer =  async () => {
@@ -16,6 +16,7 @@ const fetchPlayer =  async () => {
 
 
 function app(){
+  const [coin, setCoin] = useState(50000);
 
   const players = fetchPlayer();
 return (
@@ -23,7 +24,7 @@ return (
 
   <>
   
-  <Navbar />
+  <Navbar coin={coin} />
 
   <Banner/>
 <br />
@@ -32,7 +33,8 @@ return (
 <br />
 <br />
   <Suspense fallback={<span className="loading loading-spinner text-error"></span>}>
-    <Players players={players}> </Players>
+    <Players players={players}  coin={coin} setCoin={setCoin} >
+    </Players>
   </Suspense>
 
 
