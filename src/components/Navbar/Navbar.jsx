@@ -3,7 +3,7 @@ import Currency from '/assets/Currency.png'
 
 const Navbar = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto transition-all duration-300 sticky top-0 z-50">
             <div className="navbar bg-base-100 shadow-sm ">
   <div className="flex-1">
     <a className="btn btn-ghost text-xl">daisyUI</a>

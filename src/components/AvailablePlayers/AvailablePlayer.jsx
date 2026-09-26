@@ -7,8 +7,7 @@ const AvailablePlayer = ({data}) => {
     const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
 
     return (
-        <div>
-            <div className="card bg-base-100 w-96 shadow-sm">
+            <div className="card border border-amber-300 rounded-2xl bg-base-100 shadow-sm">
   <figure>
     <img
       src={playerImg}
@@ -16,7 +15,7 @@ const AvailablePlayer = ({data}) => {
   </figure>
   <div className="card-body">
     <h2 className="card-title"><FaUser />{playerName}</h2>
-    <div className="flex  justify-between items-center gap-2">
+    <div className="flex justify-between items-center gap-2">
         <div className="flex justify-between items-center gap-2">
         <FaFlag/>
         <p className="">{playerCountry}</p>
@@ -33,7 +32,7 @@ const AvailablePlayer = ({data}) => {
     </div> 
     <div className="flex justify-between items-center gap-26">
         <p>{battingStyle}</p>
-        <p>{bowlingStyle}</p>
+        <p className="text-right">{bowlingStyle}</p>
     </div>
     <div className="card-actions justify-between items-center">
       <p className="font-semibold">Price: ${price}</p>
@@ -41,7 +40,6 @@ const AvailablePlayer = ({data}) => {
     </div>
   </div>
 </div>
-        </div>
     );
 };
 
