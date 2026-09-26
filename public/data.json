@@ -1,5 +1,5 @@
 [
-  {
+  {"id": 1,
     "playerName": "Virat Kohli",
     "playerCountry": "India",
     "playerType": "Batsman",
@@ -10,6 +10,7 @@
     "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
   },
   {
+    "id": 2,
     "playerName": "Babar Azam",
     "playerCountry": "Pakistan",
     "playerType": "Batsman",
@@ -17,9 +18,10 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm offbreak",
     "price": 1500,
-    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
   },
   {
+    "id": 3,
     "playerName": "Ben Stokes",
     "playerCountry": "England",
     "playerType": "All-Rounder",
@@ -27,9 +29,10 @@
     "battingStyle": "Left-hand bat",
     "bowlingStyle": "Right-arm fast-medium",
     "price": 2500,
-    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
   },
   {
+    "id": 4,
     "playerName": "Kane Williamson",
     "playerCountry": "New Zealand",
     "playerType": "Batsman",
@@ -37,9 +40,10 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm offbreak",
     "price": 1100000,
-    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
   },
   {
+    "id": 5,
     "playerName": "Rashid Khan",
     "playerCountry": "Afghanistan",
     "playerType": "Bowler",
@@ -47,9 +51,10 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm legbreak",
     "price": 1300000,
-    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
   },
   {
+    "id": 6,
     "playerName": "Jos Buttler",
     "playerCountry": "England",
     "playerType": "Wicketkeeper-Batsman",
@@ -57,6 +62,6 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "N/A",
     "price": 1250000,
-    "playerImg": "https://i.ibb.co.com/LzN0G76H/images.webp"
+    "playerImg": "https://i.ibb.co.com/LzN0GH/images.webp"
   }
 ]
