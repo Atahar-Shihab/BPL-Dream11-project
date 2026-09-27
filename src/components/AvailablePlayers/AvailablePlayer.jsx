@@ -2,7 +2,7 @@
 import { FaUser,FaFlag } from "react-icons/fa";
 import { useState } from 'react';
 const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
-    console.log(data);
+    console.log(data.price);
     const [chosen, setChosen] = useState(false);
 
     const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
@@ -22,7 +22,7 @@ const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
         <p className="">{playerCountry}</p>
         
         </div>
-       <button className="btn btn-ghost hover:aura-golden">{playerType}</button>
+       <button className="btn btn-ghost">{playerType}</button>
  
     </div>
     <div className="divider"></div>

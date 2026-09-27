@@ -6,6 +6,7 @@ import SelectedPlayers from './SelectedPlayers';
 
 const Players = ({ players,coin, setCoin }) => {
     const data = use(players);
+    
     const [pl,setPl] = useState([]);
     const [selectedType, setSelectedType] = useState("available");
 
@@ -19,7 +20,7 @@ const Players = ({ players,coin, setCoin }) => {
             <div>
             <div className="aura aura-dual">
   <div className="card bg-base-100">
-      <h2 className="text-xl font-bold ">{selectedType === "available" ? "Available Players" : "Selected Players"}</h2>
+      <h2 className="text-xl font-bold ">{selectedType === "available" ? "Available Players" : `Selected Players ${pl.length}/${data.length}`} </h2>
   </div>
 </div>
             </div>
@@ -34,7 +35,7 @@ const Players = ({ players,coin, setCoin }) => {
                 selectedType === "available" ? (
                     data.map(player => <AvailablePlayer pl={pl} setPl={setPl} key={player.id} data={player} coin={coin} setCoin={setCoin} />)
                 ) : (
-                    <SelectedPlayers pl={pl} setPl={setPl} />
+                    <SelectedPlayers playersPrice={data.price} coin={coin} setCoin={setCoin} pl={pl} setPl={setPl} />
                     
                 )
             }
