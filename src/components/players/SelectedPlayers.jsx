@@ -6,8 +6,8 @@ const SelectedPlayers = ({ pl, setPl, coin, price, setCoin }) => {
     console.log(coin);
     return (
         <>
-                <div className="col-start-2 flex justify-center my-8 items-center bg-red-300 rounded-2xl p-4">
-            {pl.length === 0 ? <h2 className="text-2xl font-bold">No players selected yet.</h2>: <h2 className="text-2xl font-bold">Selected Players: {pl.length}</h2>}
+        <div className="col-start-2 flex justify-between items-center p-2 rounded-3xl bg-red-400 text-white my-4">
+                 <h2 className="text-2xl font-bold">Selected Players: {pl.length}</h2>
 
         </div>
 
@@ -27,7 +27,9 @@ const SelectedPlayers = ({ pl, setPl, coin, price, setCoin }) => {
                         </div>
                     </div>
                 </div>
-                <button onClick={() => {setCoin(coin + pl.price); setPl(pl.filter(p => p.id !== player.id))}} className="flex items-center btn btn-error  hover:bg-red-400 gap-2"><MdDelete className="transition hover:rotate-360 duration-600" /> </button>
+                <button onClick={() => {
+                    setCoin(coin + price);
+                     setPl(pl.filter(p => p.id !== player.id))}} className="flex items-center btn btn-error  hover:bg-red-400 gap-2"><MdDelete className="transition hover:rotate-360 duration-600" /> </button>
 
                 </div>
             ))

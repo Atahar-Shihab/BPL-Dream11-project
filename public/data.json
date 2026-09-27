@@ -1,5 +1,6 @@
 [
-  {"id": 1,
+  {
+    "id": 1,
     "playerName": "Virat Kohli",
     "playerCountry": "India",
     "playerType": "Batsman",
@@ -7,7 +8,7 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm medium",
     "price": 500,
-    "playerImg": "https://i.ibb.co.com/LzN0G6H/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Virat_Kohli_portrait.jpg"
   },
   {
     "id": 2,
@@ -18,7 +19,7 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm offbreak",
     "price": 1500,
-    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Babar_Azam.png"
   },
   {
     "id": 3,
@@ -29,7 +30,7 @@
     "battingStyle": "Left-hand bat",
     "bowlingStyle": "Right-arm fast-medium",
     "price": 2500,
-    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Ben_Stokes.jpg"
   },
   {
     "id": 4,
@@ -40,7 +41,7 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm offbreak",
     "price": 1100000,
-    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Kane_Williamson.jpg"
   },
   {
     "id": 5,
@@ -51,7 +52,7 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "Right-arm legbreak",
     "price": 1300000,
-    "playerImg": "https://i.ibb.co.com/LzN0G7H/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Rashid_Khan.jpg"
   },
   {
     "id": 6,
@@ -62,6 +63,6 @@
     "battingStyle": "Right-hand bat",
     "bowlingStyle": "N/A",
     "price": 1250000,
-    "playerImg": "https://i.ibb.co.com/LzN0GH/images.webp"
+    "playerImg": "https://commons.wikimedia.org/wiki/Special:FilePath/Jos_Buttler_in_2023.jpg"
   }
 ]

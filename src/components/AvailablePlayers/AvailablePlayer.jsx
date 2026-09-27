@@ -2,7 +2,6 @@
 import { FaUser,FaFlag } from "react-icons/fa";
 import { useState } from 'react';
 const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
-    console.log(data.price);
     const [chosen, setChosen] = useState(false);
 
     const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
@@ -12,7 +11,7 @@ const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
   <figure>
     <img
       src={playerImg}
-      alt="Shoes" />
+      alt={playerName} />
   </figure>
   <div className="card-body">
     <h2 className="card-title"><FaUser />{playerName}</h2>
@@ -42,6 +41,8 @@ const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
           setChosen(true);
           setPl([...pl, data]);
           setCoin(coin - price);
+          
+
         }
         else{
           alert("Not enough coins to select this player or player already selected.");

@@ -6,7 +6,7 @@ import SelectedPlayers from './SelectedPlayers';
 
 const Players = ({ players,coin, setCoin }) => {
     const data = use(players);
-    
+
     const [pl,setPl] = useState([]);
     const [selectedType, setSelectedType] = useState("available");
 
@@ -35,7 +35,13 @@ const Players = ({ players,coin, setCoin }) => {
                 selectedType === "available" ? (
                     data.map(player => <AvailablePlayer pl={pl} setPl={setPl} key={player.id} data={player} coin={coin} setCoin={setCoin} />)
                 ) : (
-                    <SelectedPlayers playersPrice={data.price} coin={coin} setCoin={setCoin} pl={pl} setPl={setPl} />
+                    (pl.length === 0) ? 
+                        <div className="col-start-2 flex justify-center my-8 items-center bg-red-300 rounded-2xl p-4">
+             <h2 className="text-2xl font-bold">No players selected yet.</h2>
+            </div> 
+                     : 
+                        pl.map(player => <SelectedPlayers pl={pl} setPl={setPl} key={player.id} price={player.price} coin={coin} setCoin={setCoin} />)
+                    
                     
                 )
             }
