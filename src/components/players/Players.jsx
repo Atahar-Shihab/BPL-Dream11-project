@@ -1,55 +1,74 @@
-// import React from 'react';
-import { use } from 'react';
-import AvailablePlayer from '../AvailablePlayers/AvailablePlayer';
 import { useState } from 'react';
+import AvailablePlayer from '../AvailablePlayers/AvailablePlayer';
 import SelectedPlayers from './SelectedPlayers';
 
-const Players = ({ players,coin, setCoin }) => {
-    const data = use(players);
+const Players = ({
+  players,
+  selectedPlayers,
+  onAddPlayer,
+  onRemovePlayer,
+  onClearTeam,
+  loading,
+  loadError,
+  teamLimit,
+}) => {
+  const [selectedType, setSelectedType] = useState('available');
+  const selectedIds = new Set(selectedPlayers.map((player) => player.id));
 
-    const [pl,setPl] = useState([]);
-    const [selectedType, setSelectedType] = useState("available");
-
-    const handleTypeChange = (type) => {
-        setSelectedType(type);
-    }
-    return (
-
-        <div className="container mx-auto my-4">
-            <div className="flex justify-between gap-2 my-4 px-34 py-4 rounded-2xl ">
-            <div>
-            <div className="aura aura-dual">
-  <div className="card bg-base-100">
-      <h2 className="text-xl font-bold ">{selectedType === "available" ? "Available Players" : `Selected Players ${pl.length}/${data.length}`} </h2>
-  </div>
-</div>
-            </div>
-            <div className="flex">
-            <button onClick={() => handleTypeChange("available")} className={`btn btn-sm ${selectedType === "available" ? "bg-[#E7FE29]" : "bg-gray-300"} rounded-r-none rounded-l-2xl m-auto`}>Available</button>
-            <button onClick={() => handleTypeChange("selected")} className={`btn btn-sm ${selectedType === "selected" ? "bg-[#E7FE29]" : "bg-gray-300"} rounded-l-none rounded-r-2xl m-auto`} >Selected({pl.length})</button>
-            </div>
-            </div>
-
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center justify-center">
-            {
-                selectedType === "available" ? (
-                    data.map(player => <AvailablePlayer pl={pl} setPl={setPl} key={player.id} data={player} coin={coin} setCoin={setCoin} />)
-                ) : (
-                    (pl.length === 0) ? 
-                        <div className="col-start-2 flex justify-center my-8 items-center bg-red-300 rounded-2xl p-4">
-             <h2 className="text-2xl font-bold">No players selected yet.</h2>
-            </div> 
-                     : 
-                        pl.map(player => <SelectedPlayers pl={pl} setPl={setPl} key={player.id} price={player.price} coin={coin} setCoin={setCoin} />)
-                    
-                    
-                )
-            }
-            
-
+  return (
+    <section id="players" className="players-section page-container">
+      <div className="players-heading">
+        <h2>{selectedType === 'available' ? 'Available Players' : `Selected Players (${selectedPlayers.length}/${teamLimit})`}</h2>
+        <div className="player-tabs" role="tablist" aria-label="Player lists">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={selectedType === 'available'}
+            onClick={() => setSelectedType('available')}
+            className={selectedType === 'available' ? 'player-tab is-active' : 'player-tab'}
+          >
+            Available
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={selectedType === 'selected'}
+            onClick={() => setSelectedType('selected')}
+            className={selectedType === 'selected' ? 'player-tab is-active' : 'player-tab'}
+          >
+            Selected <span className="tab-count">({selectedPlayers.length})</span>
+          </button>
         </div>
-        </div>
-    );
+      </div>
+
+      {loading ? (
+        <div className="players-message" role="status"><span className="loading loading-spinner loading-md" /> Loading players…</div>
+      ) : loadError ? (
+        <div className="players-message error-message" role="alert">{loadError}</div>
+      ) : selectedType === 'available' ? (
+        players.length ? (
+          <div className="player-grid">
+            {players.map((player) => (
+              <AvailablePlayer
+                key={player.id}
+                player={player}
+                isSelected={selectedIds.has(player.id)}
+                isAtLimit={selectedPlayers.length >= teamLimit}
+                onAddPlayer={onAddPlayer}
+              />
+            ))}
+          </div>
+        ) : <div className="players-message">No players are available right now.</div>
+      ) : (
+        <SelectedPlayers
+          players={selectedPlayers}
+          onRemovePlayer={onRemovePlayer}
+          onClearTeam={onClearTeam}
+          onAddMore={() => setSelectedType('available')}
+        />
+      )}
+    </section>
+  );
 };
 
 export default Players;

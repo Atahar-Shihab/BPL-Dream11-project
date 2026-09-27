@@ -1,57 +1,40 @@
-// import React from 'react'; 
-import { FaUser,FaFlag } from "react-icons/fa";
-import { useState } from 'react';
-import { toast } from "react-toastify";
-const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
-    const [chosen, setChosen] = useState(false);
+import { FaFlag, FaStar, FaUser } from 'react-icons/fa';
 
-    const { playerName, playerCountry, playerType, playerImg, price, rating, bowlingStyle, battingStyle } = data;
-
-    return (
-            <div className="card border border-amber-300 rounded-2xl bg-base-100 shadow-sm">
-  <figure>
-    <img
-      src={playerImg}
-      alt={playerName} />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title"><FaUser />{playerName}</h2>
-    <div className="flex justify-between items-center gap-2">
-        <div className="flex justify-between items-center gap-2">
-        <FaFlag/>
-        <p className="">{playerCountry}</p>
-        
-        </div>
-       <button className="btn btn-ghost">{playerType}</button>
- 
+const AvailablePlayer = ({ player, isSelected, isAtLimit, onAddPlayer }) => (
+  <article className="player-card">
+    <div className="player-photo-wrap">
+      <img
+        src={player.playerImg}
+        alt={player.playerName}
+        className="player-photo"
+        loading="lazy"
+        onError={(event) => { event.currentTarget.src = '/assets/user.png'; }}
+      />
     </div>
-    <div className="divider"></div>
-    <div className="aura aura-gold flex justify-between items-center
-    bg-linear-to-r from-blue-800 via-blue-300 to-lime-200 p-2 rounded-lg text-white">
-    <h2 className="font-bold">Rating:</h2>
-    <p className="font-bold justify-end flex text-slate-800 ">{rating}</p>
-    </div> 
-    <div className="flex justify-between items-center gap-26">
-        <p>{battingStyle}</p>
-        <p className="text-right">{bowlingStyle}</p>
+    <div className="player-card-body">
+      <h3 className="player-name"><FaUser aria-hidden="true" />{player.playerName}</h3>
+      <div className="player-meta">
+        <span><FaFlag aria-hidden="true" />{player.playerCountry}</span>
+        <span className="player-role">{player.playerType}</span>
+      </div>
+      <div className="player-rating"><span>Rating</span><strong><FaStar aria-hidden="true" /> {player.rating}</strong></div>
+      <div className="player-styles">
+        <span>{player.battingStyle}</span>
+        <span>{player.bowlingStyle}</span>
+      </div>
+      <div className="player-card-footer">
+        <strong>${player.price.toLocaleString()}</strong>
+        <button
+          type="button"
+          onClick={() => onAddPlayer(player)}
+          disabled={isSelected || isAtLimit}
+          className={isSelected ? 'choose-button is-selected' : 'choose-button'}
+        >
+          {isSelected ? 'Selected' : isAtLimit ? 'Team Full' : 'Choose Player'}
+        </button>
+      </div>
     </div>
-    <div className="card-actions justify-between items-center">
-      <p className="font-semibold">Price: ${price}</p>
-      <button onClick={() => {
-        if (!chosen && coin >= price) {
-          setChosen(true);
-          setPl([...pl, data]);
-          setCoin(coin - price);
-          toast("Player selected successfully!",{type:"success"});
-        }
-        else{
-          toast("Not enough coins to select this player or player already selected.", { type: "error" });
-}
-      }} className={`btn ${chosen ? 'btn-disabled' : 'btn-outline btn-success'}`} >{chosen ? "Selected" : "Choose Player"}</button>
-    </div>
-  </div>
-</div>
-    );
-};
+  </article>
+);
 
 export default AvailablePlayer;

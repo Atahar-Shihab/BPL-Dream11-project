@@ -1,22 +1,24 @@
-// import React from 'react';
-import Currency from '/assets/Currency.png'
+import Currency from '/assets/Currency.png';
 
-const Navbar = ({ coin }) => {
-    return (
-        <div className="container mx-auto transition-all duration-300 sticky top-0 z-50">
-            <div className="navbar bg-base-100 shadow-sm ">
-  <div className="flex-1">
-    <a href="#" className="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div className="flex-none">
-    <button className="flex justify-between items-center gap-2 font bold text-xl">
-      {coin} coins
-      <img src={Currency} alt="Currency" className="h-5 w-5" />
-    </button>
-  </div>
-</div>
+const Navbar = ({ coin }) => (
+  <header className="site-header">
+    <nav className="navbar page-container" aria-label="Main navigation">
+      <a href="#top" className="brand" aria-label="Dream 11 Cricket home">
+        <img src="/assets/logo.png" alt="Dream 11 Cricket" />
+      </a>
+      <div className="nav-right">
+        <div className="nav-links">
+          <a href="#top">Home</a>
+          <a href="#players">Players</a>
+          <a href="#footer">About</a>
         </div>
-    );
-};
+        <div className="coin-balance" aria-label={`${coin.toLocaleString()} coins available`}>
+          <span>{coin.toLocaleString()} Coins</span>
+          <img src={Currency} alt="" />
+        </div>
+      </div>
+    </nav>
+  </header>
+);
 
 export default Navbar;

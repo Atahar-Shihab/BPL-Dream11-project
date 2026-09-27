@@ -4,7 +4,7 @@ import Bg from '/assets/bg-shadow.png'
 
 const Banner = () => {
     return (
-    <section className="banner relative isolate mx-4 min-h-100 overflow-hidden rounded-2xl bg-neutral-950 py-12 sm:mx-6 sm:min-h-120 sm:py-16 lg:mx-auto lg:max-w-7xl lg:py-20">
+    <section id="top" className="banner relative isolate mx-4 min-h-100 overflow-hidden rounded-2xl bg-neutral-950 py-12 sm:mx-6 sm:min-h-120 sm:py-16 lg:mx-auto lg:max-w-7xl lg:py-20">
       <img
         src={Bg}
         alt=""
@@ -18,7 +18,8 @@ const Banner = () => {
         <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
           Assemble Your Ultimate Dream 11 Cricket Team
         </h1>
-        <button type="button" className="btn btn-primary mt-6 sm:mt-8">Get Started</button>
+        <p className="banner-subtitle">Build a team that plays beyond boundaries.</p>
+        <a href="#players" className="primary-button mt-6 sm:mt-8">Explore Players</a>
       </div>
     </section>
     );
