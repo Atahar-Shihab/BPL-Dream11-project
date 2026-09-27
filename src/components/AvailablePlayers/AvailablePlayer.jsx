@@ -1,6 +1,7 @@
 // import React from 'react'; 
 import { FaUser,FaFlag } from "react-icons/fa";
 import { useState } from 'react';
+import { toast } from "react-toastify";
 const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
     const [chosen, setChosen] = useState(false);
 
@@ -41,11 +42,10 @@ const AvailablePlayer = ({data, coin, setCoin, pl, setPl}) => {
           setChosen(true);
           setPl([...pl, data]);
           setCoin(coin - price);
-          
-
+          toast("Player selected successfully!",{type:"success"});
         }
         else{
-          alert("Not enough coins to select this player or player already selected.");
+          toast("Not enough coins to select this player or player already selected.", { type: "error" });
 }
       }} className={`btn ${chosen ? 'btn-disabled' : 'btn-outline btn-success'}`} >{chosen ? "Selected" : "Choose Player"}</button>
     </div>

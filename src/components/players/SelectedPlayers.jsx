@@ -1,18 +1,14 @@
 // import React from 'react';
 import { MdDelete } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
+import { toast } from 'react-toastify';
 const SelectedPlayers = ({ pl, setPl, coin, price, setCoin }) => {
-    console.log(price);
-    console.log(coin);
     return (
         <>
         <div className="col-start-2 flex justify-between items-center p-2 rounded-3xl bg-red-400 text-white my-4">
                  <h2 className="text-2xl font-bold">Selected Players: {pl.length}</h2>
 
         </div>
-
-        <div className=""></div>
-
         {
             
             pl.map(player => (
@@ -28,6 +24,7 @@ const SelectedPlayers = ({ pl, setPl, coin, price, setCoin }) => {
                     </div>
                 </div>
                 <button onClick={() => {
+                    toast("Player removed from selected list!", { type: "info" });
                     setCoin(coin + price);
                      setPl(pl.filter(p => p.id !== player.id))}} className="flex items-center btn btn-error  hover:bg-red-400 gap-2"><MdDelete className="transition hover:rotate-360 duration-600" /> </button>
 
