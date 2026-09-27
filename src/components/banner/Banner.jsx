@@ -4,7 +4,7 @@ import Bg from '/assets/bg-shadow.png'
 
 const Banner = () => {
     return (
-    <section className="banner relative isolate mx-4 min-h-[25rem] overflow-hidden rounded-2xl bg-neutral-950 py-12 sm:mx-6 sm:min-h-[30rem] sm:py-16 lg:mx-auto lg:max-w-7xl lg:py-20">
+    <section className="banner relative isolate mx-4 min-h-100 overflow-hidden rounded-2xl bg-neutral-950 py-12 sm:mx-6 sm:min-h-120 sm:py-16 lg:mx-auto lg:max-w-7xl lg:py-20">
       <img
         src={Bg}
         alt=""
