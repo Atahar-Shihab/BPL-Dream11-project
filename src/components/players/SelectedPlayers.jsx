@@ -51,8 +51,8 @@ const SelectedPlayers = ({ players, onRemovePlayer, onClearTeam, onAddMore }) =>
             <div
               className={`h-full rounded-full transition-all duration-700 ease-out ${
                 players.length === 6
-                  ? 'bg-gradient-to-r from-yellow-400 via-emerald-400 to-yellow-400 animate-pulse'
-                  : 'bg-gradient-to-r from-yellow-400 to-emerald-400'
+                  ? 'bg-linear-to-r from-yellow-400 via-emerald-400 to-yellow-400 animate-pulse'
+                  : 'bg-linear-to-r from-yellow-400 to-emerald-400'
               }`}
               style={{ width: `${(players.length / 6) * 100}%` }}
             />
