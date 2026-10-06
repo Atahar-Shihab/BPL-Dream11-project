@@ -3,7 +3,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Banner from './components/banner/Banner';
+import StatsMarquee from './components/Stats/StatsMarquee';
 import Players from './components/players/Players';
+import Newsletter from './components/Newsletter/Newsletter';
 import Footer from './components/Footer/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
 import ClaimCoinsModal from './components/modals/ClaimCoinsModal';
@@ -89,6 +91,7 @@ function App() {
       <Navbar coin={coin} onOpenClaimModal={() => setClaimModalOpen(true)} />
       <main>
         <Banner />
+        <StatsMarquee />
         <Players
           players={players}
           selectedPlayers={selectedPlayers}
@@ -99,6 +102,7 @@ function App() {
           loadError={loadError}
           teamLimit={TEAM_LIMIT}
         />
+        <Newsletter />
       </main>
       <Footer />
       <ClaimCoinsModal
