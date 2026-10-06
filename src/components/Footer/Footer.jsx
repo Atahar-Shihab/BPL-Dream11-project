@@ -1,4 +1,4 @@
-import { Heart, Github, Twitter, Globe, ChevronUp } from 'lucide-react';
+import { Heart, Globe, ChevronUp, ExternalLink, Code2, MessageCircle } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollAnimations';
 
 const Footer = () => {
@@ -39,10 +39,10 @@ const Footer = () => {
             <div className="flex flex-col gap-2">
               <h4 className="text-yellow-400 font-bold text-xs uppercase tracking-wider mb-1">Connect</h4>
               <a href="https://github.com/Atahar-Shihab" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white transition flex items-center gap-1.5">
-                <Github className="w-3.5 h-3.5" /> GitHub
+                <Code2 className="w-3.5 h-3.5" /> GitHub
               </a>
               <a href="#footer" className="text-white/50 hover:text-white transition flex items-center gap-1.5">
-                <Twitter className="w-3.5 h-3.5" /> Twitter
+                <MessageCircle className="w-3.5 h-3.5" /> Twitter
               </a>
               <a href="#footer" className="text-white/50 hover:text-white transition flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5" /> Website
