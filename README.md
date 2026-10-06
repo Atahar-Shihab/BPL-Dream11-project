@@ -1,87 +1,45 @@
-<div align="center">
+# 🏏 BPL Dream 11 - Ultimate Fantasy Cricket
 
-# 🏏 Dream 11 Cricket
+> Build your dream cricket team with interactive 3D stadium physics, rich Web Audio sound effects, and explosive confetti celebrations!
 
-### Pick your players. Manage your budget. Build your dream team.
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
+![React](https://img.shields.io/badge/React-19-61dafb.svg?logo=react)
+![Three.js](https://img.shields.io/badge/Three.js-3D-black.svg?logo=three.js)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38b2ac.svg?logo=tailwind-css)
 
-A responsive cricket team builder made with React. Browse player cards, spend your coins wisely, and manage a squad of up to six players.
+Welcome to the **BPL Dream 11** project! This is not just a typical player selection app; it's a fully immersive, animated, and highly polished fantasy cricket experience.
 
-</div>
+## ✨ Epic New Features
 
----
+- 🏟️ **Interactive 3D Stadium:** A real-time 3D cricket ball built with Three.js that responds to your mouse and scroll movements!
+- 🎵 **Synthesized Sound Engine:** Pure Web Audio API sound effects for bat shots, coin chimes, and stadium cheers. Zero external audio file dependencies!
+- 🎉 **Explosive Celebrations:** Beautiful `canvas-confetti` showers when you claim coins or complete your 6-man squad!
+- 💳 **3D Perspective Cards:** Holographic player cards that tilt and reflect light dynamically as you hover.
+- 💰 **Franchise Coin Grants:** Run out of money? Claim free sponsorship coins through the animated modal!
+- 🔍 **Advanced Filtering:** Instantly search by name, filter by role (Batsman, Bowler, etc.), and sort by rating or price.
+- 📱 **Fully Responsive:** Sleek mobile drawer, floating action buttons, and buttery smooth layout animations.
 
-## ✨ What you can do
+## 🚀 Getting Started
 
-- Browse player details, including country, role, rating, batting style, bowling style, and price.
-- Start with **50,000 coins** and see your balance update as you build your team.
-- Add up to **six unique players** while staying within budget.
-- Review your selections, remove a player to get their price refunded, or clear the whole team.
-- Use the layout on desktop, tablet, or mobile.
+1. **Clone the repository**
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-## 🧰 Built with
+## 🛠️ Tech Stack
 
-| Tool | Purpose |
-| --- | --- |
-| [React](https://react.dev/) | Interface and application state |
-| [Vite](https://vite.dev/) | Development server and production builds |
-| [Tailwind CSS](https://tailwindcss.com/) + [daisyUI](https://daisyui.com/) | Utility styling and UI components |
-| [React Icons](https://react-icons.github.io/react-icons/) | Interface icons |
-| [React Toastify](https://fkhadra.github.io/react-toastify/) | Selection feedback |
+- **React 19**
+- **Vite** (Ultra-fast build tool)
+- **Three.js** (WebGL 3D Engine)
+- **Tailwind CSS v4** (Utility-first styling)
+- **Lucide React** & **React Icons** (Beautiful iconography)
+- **Framer Motion / Vanilla JS** (Smooth physics-based animations)
 
-## 🚀 Get started
+## 🏆 Pull Shark Achievement
 
-You’ll need Node.js and npm installed.
-
-```bash
-# Install dependencies
-npm install
-
-# Start the local development server
-npm run dev
-```
-
-Open the local URL printed in your terminal to use the app.
-
-## 📜 Available commands
-
-```bash
-npm run dev      # Start the development server
-npm run build    # Create a production build in dist/
-npm run preview  # Preview the production build locally
-npm run lint     # Check the project with ESLint
-```
-
-## 🗂️ Project structure
-
-```text
-src/
-├── components/
-│   ├── AvailablePlayers/  # Player cards and choose actions
-│   ├── Navbar/            # Brand and live coin balance
-│   ├── banner/            # Intro banner and player-list link
-│   └── players/           # Available and selected player views
-├── App.jsx                # Player data, team, and budget state
-├── App.css                # Application layout and responsive styles
-└── main.jsx               # React entry point
-
-public/
-└── data.json              # Player catalogue
-
-assets/                    # Local logos, currency, and banner artwork
-```
-
-## 🧠 How team selection works
-
-The player catalogue is loaded from `public/data.json`. Each player record includes an `id`, name, country, type, rating, batting and bowling styles, price, and image URL.
-
-The app keeps the selected team and coin balance together in `src/App.jsx`. Choosing a player checks that they are not already selected, the team has fewer than six players, and the balance covers their price. Removing a player refunds their price; clearing the team refunds the total cost of all selected players.
-
-To change the catalogue, edit `public/data.json` and keep each player’s `id` unique. Player photos currently use remote Wikimedia Commons file URLs; the card falls back to a local image if a photo cannot load.
-
----
-
-<div align="center">
-
-Made for cricket fans who love building the perfect team. 🏆
-
-</div>
+This repository is designed with clean Conventional Commits. Feel free to open Pull Requests for new features to earn your GitHub Pull Shark badge!
