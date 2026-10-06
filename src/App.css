@@ -225,3 +225,10 @@ a { color: inherit; text-decoration: none; }
   .team-actions button { flex: 1; padding-inline: 10px; font-size: 12px; }
   .stat-badge { padding: 8px 12px; }
 }
+
+@media (max-width: 380px) {
+  .player-card-body { padding: 12px; }
+  .player-name { font-size: 15px; }
+  .banner h1 { font-size: 20px; }
+  .banner { padding-block: 25px !important; }
+}
