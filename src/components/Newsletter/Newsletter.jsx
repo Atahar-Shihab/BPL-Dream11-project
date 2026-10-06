@@ -14,7 +14,7 @@ const Newsletter = () => {
     if (!email.trim()) return;
     setSubmitted(true);
     playCoinSound();
-    toast.success('Welcome aboard! You'll receive BPL updates at your inbox.');
+    toast.success("Welcome aboard! You'll receive BPL updates at your inbox.");
     setEmail('');
     setTimeout(() => setSubmitted(false), 4000);
   };
