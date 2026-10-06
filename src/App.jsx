@@ -3,7 +3,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Banner from './components/banner/Banner';
+import StatsMarquee from './components/Stats/StatsMarquee';
 import Players from './components/players/Players';
+import Newsletter from './components/Newsletter/Newsletter';
+import Footer from './components/Footer/Footer';
+import ScrollProgress from './components/common/ScrollProgress';
+import ClaimCoinsModal from './components/modals/ClaimCoinsModal';
+import { triggerConfetti } from './utils/confetti';
+import { playCoinSound, playBatShotSound } from './utils/soundEffects';
 
 const STARTING_COINS = 50000;
 const TEAM_LIMIT = 6;
@@ -14,6 +21,7 @@ function App() {
   const [coin, setCoin] = useState(STARTING_COINS);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
+  const [claimModalOpen, setClaimModalOpen] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -52,7 +60,9 @@ function App() {
 
     setSelectedPlayers((current) => [...current, player]);
     setCoin((current) => current - player.price);
-    toast.success(`${player.playerName} added to your team.`);
+    playBatShotSound();
+    triggerConfetti();
+    toast.success(`${player.playerName} added to your team!`);
   };
 
   const removePlayer = (playerId) => {
@@ -70,11 +80,18 @@ function App() {
     toast.info('Your team has been cleared.');
   };
 
+  const handleClaimCoins = (amount) => {
+    setCoin((current) => current + amount);
+    playCoinSound();
+  };
+
   return (
     <>
-      <Navbar coin={coin} />
+      <ScrollProgress />
+      <Navbar coin={coin} onOpenClaimModal={() => setClaimModalOpen(true)} />
       <main>
         <Banner />
+        <StatsMarquee />
         <Players
           players={players}
           selectedPlayers={selectedPlayers}
@@ -85,12 +102,14 @@ function App() {
           loadError={loadError}
           teamLimit={TEAM_LIMIT}
         />
+        <Newsletter />
       </main>
-      <footer id="footer" className="site-footer">
-        <img src="/assets/logo-footer.png" alt="Cricket" className="footer-logo" />
-        <p>Build your dream cricket team, one player at a time.</p>
-        <small>© {new Date().getFullYear()} Dream 11 Cricket</small>
-      </footer>
+      <Footer />
+      <ClaimCoinsModal
+        isOpen={claimModalOpen}
+        onClose={() => setClaimModalOpen(false)}
+        onClaimCoins={handleClaimCoins}
+      />
       <ToastContainer position="top-right" autoClose={2600} newestOnTop />
     </>
   );
