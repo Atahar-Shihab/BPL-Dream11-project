@@ -4,6 +4,7 @@ import SelectedPlayers from './SelectedPlayers';
 import { useStaggerReveal, useScrollReveal } from '../../hooks/useScrollAnimations';
 import { playWhooshSound } from '../../utils/soundEffects';
 import { Search, Filter } from 'lucide-react';
+import PlayerGridSkeleton from '../common/PlayerGridSkeleton';
 
 const PLAYER_TYPES = ['All', 'Batsman', 'Bowler', 'All-Rounder', 'Wicketkeeper-Batsman'];
 
@@ -159,9 +160,7 @@ const Players = ({
       )}
 
       {loading ? (
-        <div className="players-message" role="status">
-          <span className="loading loading-spinner loading-md" /> Loading players…
-        </div>
+        <PlayerGridSkeleton count={6} />
       ) : loadError ? (
         <div className="players-message error-message" role="alert">{loadError}</div>
       ) : selectedType === 'available' ? (
