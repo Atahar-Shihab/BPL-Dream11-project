@@ -3,10 +3,21 @@ import AvailablePlayer from '../AvailablePlayers/AvailablePlayer';
 import SelectedPlayers from './SelectedPlayers';
 import { useStaggerReveal, useScrollReveal } from '../../hooks/useScrollAnimations';
 import { playWhooshSound } from '../../utils/soundEffects';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, ArrowRightLeft, ShieldCheck } from 'lucide-react';
 import PlayerGridSkeleton from '../common/PlayerGridSkeleton';
+import PlayerCompareModal from '../modals/PlayerCompareModal';
 
-const PLAYER_TYPES = ['All', 'Batsman', 'Bowler', 'All-Rounder', 'Wicketkeeper-Batsman'];
+const PLAYER_TYPES = ['All Roles', 'Batsman', 'Bowler', 'All-Rounder', 'Wicketkeeper-Batsman'];
+
+const FRANCHISES = [
+  'All Franchises',
+  'Fortune Barishal',
+  'Comilla Victorians',
+  'Rangpur Riders',
+  'Sylhet Strikers',
+  'Chattogram Challengers',
+  'International',
+];
 
 const Players = ({
   players,
@@ -16,15 +27,22 @@ const Players = ({
   onClearTeam,
   loading,
   loadError,
-  teamLimit,
+  teamLimit = 6,
+  captainId,
+  viceCaptainId,
+  onSetCaptain,
+  onSetViceCaptain,
+  coin,
+  onOpenMatchSim,
 }) => {
   const [selectedType, setSelectedType] = useState('available');
   const [searchQuery, setSearchQuery] = useState('');
-  const [filterRole, setFilterRole] = useState('All');
+  const [filterRole, setFilterRole] = useState('All Roles');
+  const [filterFranchise, setFilterFranchise] = useState('All Franchises');
   const [sortBy, setSortBy] = useState('name');
+  const [compareModalOpen, setCompareModalOpen] = useState(false);
 
   const selectedIds = new Set(selectedPlayers.map((player) => player.id));
-
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollReveal({ threshold: 0.05 });
 
   // Filter and sort available players
@@ -38,13 +56,19 @@ const Players = ({
         (p) =>
           p.playerName.toLowerCase().includes(q) ||
           p.playerCountry.toLowerCase().includes(q) ||
-          p.playerType.toLowerCase().includes(q)
+          p.playerType.toLowerCase().includes(q) ||
+          (p.bplTeam && p.bplTeam.toLowerCase().includes(q))
       );
     }
 
     // Role filter
-    if (filterRole !== 'All') {
+    if (filterRole !== 'All Roles') {
       result = result.filter((p) => p.playerType === filterRole);
+    }
+
+    // Franchise filter
+    if (filterFranchise !== 'All Franchises') {
+      result = result.filter((p) => p.bplTeam === filterFranchise);
     }
 
     // Sorting
@@ -63,9 +87,9 @@ const Players = ({
     }
 
     return result;
-  }, [players, searchQuery, filterRole, sortBy]);
+  }, [players, searchQuery, filterRole, filterFranchise, sortBy]);
 
-  const stagger = useStaggerReveal(filteredPlayers.length, 60);
+  const stagger = useStaggerReveal(filteredPlayers.length, 50);
 
   return (
     <section
@@ -81,37 +105,54 @@ const Players = ({
             ? 'Available Players'
             : `Selected Players (${selectedPlayers.length}/${teamLimit})`}
         </h2>
-        <div className="player-tabs" role="tablist" aria-label="Player lists">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedType === 'available'}
-            onClick={() => {
-              playWhooshSound();
-              setSelectedType('available');
-            }}
-            className={selectedType === 'available' ? 'player-tab is-active' : 'player-tab'}
-          >
-            Available
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={selectedType === 'selected'}
-            onClick={() => {
-              playWhooshSound();
-              setSelectedType('selected');
-            }}
-            className={selectedType === 'selected' ? 'player-tab is-active' : 'player-tab'}
-          >
-            Selected <span className="tab-count">({selectedPlayers.length})</span>
-          </button>
+
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Compare Players trigger */}
+          {players.length >= 2 && (
+            <button
+              type="button"
+              onClick={() => {
+                playWhooshSound();
+                setCompareModalOpen(true);
+              }}
+              className="px-3.5 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-200 text-xs font-bold hover:bg-neutral-50 dark:hover:bg-neutral-800 transition flex items-center gap-1.5 shadow-xs"
+            >
+              <ArrowRightLeft className="w-3.5 h-3.5 text-yellow-500" /> Compare Stars
+            </button>
+          )}
+
+          <div className="player-tabs" role="tablist" aria-label="Player lists">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={selectedType === 'available'}
+              onClick={() => {
+                playWhooshSound();
+                setSelectedType('available');
+              }}
+              className={selectedType === 'available' ? 'player-tab is-active' : 'player-tab'}
+            >
+              Available
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={selectedType === 'selected'}
+              onClick={() => {
+                playWhooshSound();
+                setSelectedType('selected');
+              }}
+              className={selectedType === 'selected' ? 'player-tab is-active' : 'player-tab'}
+            >
+              Selected <span className="tab-count">({selectedPlayers.length})</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Search & Filter Bar (visible only for Available tab) */}
       {selectedType === 'available' && !loading && !loadError && (
-        <div className="flex flex-wrap items-center gap-3 mb-5 animate-fadeIn">
+        <div className="flex flex-wrap items-center gap-2.5 mb-6 animate-fadeIn">
           {/* Search Box */}
           <div className="relative flex-1 min-w-[200px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
@@ -119,18 +160,17 @@ const Players = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search players by name, country..."
-              className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-neutral-200 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition"
+              placeholder="Search by name, team, country..."
+              className="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition"
             />
           </div>
 
           {/* Role Filter */}
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-neutral-400 pointer-events-none" />
             <select
               value={filterRole}
               onChange={(e) => setFilterRole(e.target.value)}
-              className="pl-8 pr-8 py-2.5 text-sm rounded-xl border border-neutral-200 bg-white focus:border-yellow-400 outline-none appearance-none cursor-pointer"
+              className="px-3 py-2.5 text-xs font-semibold rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:border-yellow-400 outline-none cursor-pointer"
             >
               {PLAYER_TYPES.map((type) => (
                 <option key={type} value={type}>
@@ -140,21 +180,36 @@ const Players = ({
             </select>
           </div>
 
-          {/* Sort */}
+          {/* Franchise Filter */}
+          <div className="relative">
+            <select
+              value={filterFranchise}
+              onChange={(e) => setFilterFranchise(e.target.value)}
+              className="px-3 py-2.5 text-xs font-semibold rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:border-yellow-400 outline-none cursor-pointer"
+            >
+              {FRANCHISES.map((team) => (
+                <option key={team} value={team}>
+                  {team}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sort Dropdown */}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2.5 text-sm rounded-xl border border-neutral-200 bg-white focus:border-yellow-400 outline-none appearance-none cursor-pointer"
+            className="px-3 py-2.5 text-xs font-semibold rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 focus:border-yellow-400 outline-none cursor-pointer"
           >
-            <option value="name">Sort: Name</option>
-            <option value="rating">Sort: Rating</option>
-            <option value="price-low">Sort: Price ↑</option>
-            <option value="price-high">Sort: Price ↓</option>
+            <option value="name">Sort: Name (A-Z)</option>
+            <option value="rating">Sort: Top Rating ★</option>
+            <option value="price-low">Sort: Price (Low → High)</option>
+            <option value="price-high">Sort: Price (High → Low)</option>
           </select>
 
-          {/* Results count */}
-          <span className="text-xs text-neutral-400 font-medium">
-            {filteredPlayers.length} player{filteredPlayers.length !== 1 ? 's' : ''}
+          {/* Results count pill */}
+          <span className="text-xs text-neutral-400 font-bold px-2 py-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg">
+            {filteredPlayers.length} / {players.length} Players
           </span>
         </div>
       )}
@@ -188,8 +243,8 @@ const Players = ({
           </div>
         ) : (
           <div className="players-message">
-            {searchQuery || filterRole !== 'All'
-              ? 'No players match your search criteria.'
+            {searchQuery || filterRole !== 'All Roles' || filterFranchise !== 'All Franchises'
+              ? 'No players match your search criteria. Try adjusting your filters.'
               : 'No players are available right now.'}
           </div>
         )
@@ -199,8 +254,22 @@ const Players = ({
           onRemovePlayer={onRemovePlayer}
           onClearTeam={onClearTeam}
           onAddMore={() => setSelectedType('available')}
+          captainId={captainId}
+          viceCaptainId={viceCaptainId}
+          onSetCaptain={onSetCaptain}
+          onSetViceCaptain={onSetViceCaptain}
+          coin={coin}
+          onOpenMatchSim={onOpenMatchSim}
+          teamLimit={teamLimit}
         />
       )}
+
+      {/* Head-to-Head Compare Modal */}
+      <PlayerCompareModal
+        isOpen={compareModalOpen}
+        onClose={() => setCompareModalOpen(false)}
+        allPlayers={players}
+      />
     </section>
   );
 };
