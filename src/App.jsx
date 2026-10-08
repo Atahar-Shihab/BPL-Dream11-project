@@ -9,10 +9,11 @@ import Newsletter from './components/Newsletter/Newsletter';
 import Footer from './components/Footer/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
 import ClaimCoinsModal from './components/modals/ClaimCoinsModal';
+import MatchSimulatorModal from './components/modals/MatchSimulatorModal';
 import { triggerConfetti } from './utils/confetti';
 import { playCoinSound, playBatShotSound } from './utils/soundEffects';
 
-const STARTING_COINS = 50000;
+const STARTING_COINS = 65000;
 const TEAM_LIMIT = 6;
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [claimModalOpen, setClaimModalOpen] = useState(false);
+  const [matchSimOpen, setMatchSimOpen] = useState(false);
+  const [captainId, setCaptainId] = useState(null);
+  const [viceCaptainId, setViceCaptainId] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -44,6 +49,19 @@ function App() {
     return () => { isActive = false; };
   }, []);
 
+  // Sync theme
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
   const addPlayer = (player) => {
     if (selectedPlayers.some((selected) => selected.id === player.id)) {
       toast.info(`${player.playerName} is already in your team.`);
@@ -54,15 +72,23 @@ function App() {
       return;
     }
     if (coin < player.price) {
-      toast.error('You do not have enough coins for this player.');
+      toast.error('You do not have enough coins. Claim a free grant in the top bar!');
       return;
     }
 
     setSelectedPlayers((current) => [...current, player]);
     setCoin((current) => current - player.price);
+
+    // Auto-assign Captain / VC if first two players
+    if (!captainId) {
+      setCaptainId(player.id);
+    } else if (!viceCaptainId) {
+      setViceCaptainId(player.id);
+    }
+
     playBatShotSound();
     triggerConfetti();
-    toast.success(`${player.playerName} added to your team!`);
+    toast.success(`${player.playerName} signed to your Dream XI!`);
   };
 
   const removePlayer = (playerId) => {
@@ -71,12 +97,18 @@ function App() {
 
     setSelectedPlayers((current) => current.filter((selected) => selected.id !== playerId));
     setCoin((current) => current + player.price);
-    toast.info(`${player.playerName} removed from your team.`);
+
+    if (captainId === playerId) setCaptainId(null);
+    if (viceCaptainId === playerId) setViceCaptainId(null);
+
+    toast.info(`${player.playerName} released from team.`);
   };
 
   const clearTeam = () => {
     setCoin((current) => current + selectedPlayers.reduce((total, player) => total + player.price, 0));
     setSelectedPlayers([]);
+    setCaptainId(null);
+    setViceCaptainId(null);
     toast.info('Your team has been cleared.');
   };
 
@@ -85,10 +117,37 @@ function App() {
     playCoinSound();
   };
 
+  const handleRewardCoins = (amount) => {
+    setCoin((current) => current + amount);
+  };
+
+  const handleSetCaptain = (id) => {
+    if (viceCaptainId === id) {
+      setViceCaptainId(captainId); // Swap
+    }
+    setCaptainId(id);
+    const p = selectedPlayers.find((pl) => pl.id === id);
+    if (p) toast.success(`👑 ${p.playerName} is now Team Captain (2x Points)!`);
+  };
+
+  const handleSetViceCaptain = (id) => {
+    if (captainId === id) {
+      setCaptainId(viceCaptainId); // Swap
+    }
+    setViceCaptainId(id);
+    const p = selectedPlayers.find((pl) => pl.id === id);
+    if (p) toast.info(`⭐ ${p.playerName} is now Vice-Captain (1.5x Points)!`);
+  };
+
   return (
     <>
       <ScrollProgress />
-      <Navbar coin={coin} onOpenClaimModal={() => setClaimModalOpen(true)} />
+      <Navbar
+        coin={coin}
+        onOpenClaimModal={() => setClaimModalOpen(true)}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={toggleDarkMode}
+      />
       <main>
         <Banner />
         <StatsMarquee />
@@ -101,15 +160,34 @@ function App() {
           loading={loading}
           loadError={loadError}
           teamLimit={TEAM_LIMIT}
+          captainId={captainId}
+          viceCaptainId={viceCaptainId}
+          onSetCaptain={handleSetCaptain}
+          onSetViceCaptain={handleSetViceCaptain}
+          coin={coin}
+          onOpenMatchSim={() => setMatchSimOpen(true)}
         />
         <Newsletter />
       </main>
       <Footer />
+
+      {/* Claim Sponsorship Modal */}
       <ClaimCoinsModal
         isOpen={claimModalOpen}
         onClose={() => setClaimModalOpen(false)}
         onClaimCoins={handleClaimCoins}
       />
+
+      {/* BPL Live Match Simulator Modal */}
+      <MatchSimulatorModal
+        isOpen={matchSimOpen}
+        onClose={() => setMatchSimOpen(false)}
+        selectedPlayers={selectedPlayers}
+        captainId={captainId}
+        viceCaptainId={viceCaptainId}
+        onRewardCoins={handleRewardCoins}
+      />
+
       <ToastContainer position="top-right" autoClose={2600} newestOnTop />
     </>
   );
