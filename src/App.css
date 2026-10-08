@@ -232,3 +232,27 @@ a { color: inherit; text-decoration: none; }
   .banner h1 { font-size: 20px; }
   .banner { padding-block: 25px !important; }
 }
+
+/* -- Dark Night Match Theme ---------------------------- */
+dark body, html.dark body { background: #0b0f19; color: #f3f4f6; }
+html.dark .site-header { background: rgba(11, 15, 25, 0.92); border-bottom-color: rgba(255, 255, 255, 0.08); }
+html.dark .nav-links { color: #9ca3af; }
+html.dark .nav-links a:hover { color: #f3f4f6; }
+html.dark .coin-balance { border-color: #27272a; color: #f3f4f6; background: #18181b; }
+html.dark .player-card { background: #121826; border-color: #1f293d; color: #f3f4f6; }
+html.dark .player-card-body { color: #f3f4f6; }
+html.dark .player-name { color: #f3f4f6; }
+html.dark .player-meta, html.dark .player-styles { color: #9ca3af; }
+html.dark .player-role { background: #1a2234; color: #cbd5e1; }
+html.dark .choose-button { background: #1a2234; border-color: #2d3748; color: #e2e8f0; }
+html.dark .choose-button:hover:not(:disabled) { background: #243046; border-color: #e7fb25; color: #e7fb25; }
+html.dark .player-tab { background: #121826; color: #9ca3af; }
+html.dark .player-tabs { border-color: #27272a; }
+html.dark .selected-player { background: #121826; border-color: #1f293d; color: #f3f4f6; }
+html.dark .selected-player-info h3 { color: #f3f4f6; }
+html.dark .mobile-drawer { background: #0b0f19; border-color: #1f293d; }
+html.dark .mobile-drawer a { color: #d1d5db; }
+
+/* -- Cricket Pitch Tactical Field --------------------- */
+.cricket-pitch-container { box-shadow: 0 20px 50px rgba(5, 150, 105, 0.25), inset 0 0 40px rgba(0,0,0,0.5); }
+
