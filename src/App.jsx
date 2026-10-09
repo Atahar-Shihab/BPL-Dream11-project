@@ -8,10 +8,14 @@ import Players from './components/players/Players';
 import Newsletter from './components/Newsletter/Newsletter';
 import Footer from './components/Footer/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
+import LiveTicker from './components/common/LiveTicker';
 import ClaimCoinsModal from './components/modals/ClaimCoinsModal';
 import MatchSimulatorModal from './components/modals/MatchSimulatorModal';
+import TournamentModal from './components/modals/TournamentModal';
 import { triggerConfetti } from './utils/confetti';
 import { playCoinSound, playBatShotSound } from './utils/soundEffects';
+
+import { DATA_JSON_URL } from './utils/assets';
 
 const STARTING_COINS = 65000;
 const TEAM_LIMIT = 6;
@@ -24,6 +28,7 @@ function App() {
   const [loadError, setLoadError] = useState('');
   const [claimModalOpen, setClaimModalOpen] = useState(false);
   const [matchSimOpen, setMatchSimOpen] = useState(false);
+  const [tournamentModalOpen, setTournamentModalOpen] = useState(false);
   const [captainId, setCaptainId] = useState(null);
   const [viceCaptainId, setViceCaptainId] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -31,7 +36,7 @@ function App() {
   useEffect(() => {
     let isActive = true;
 
-    fetch('/data.json')
+    fetch(DATA_JSON_URL)
       .then((response) => {
         if (!response.ok) throw new Error('Could not load the player list.');
         return response.json();
@@ -142,11 +147,13 @@ function App() {
   return (
     <>
       <ScrollProgress />
+      <LiveTicker />
       <Navbar
         coin={coin}
         onOpenClaimModal={() => setClaimModalOpen(true)}
         isDarkMode={isDarkMode}
         onToggleDarkMode={toggleDarkMode}
+        onOpenTournamentModal={() => setTournamentModalOpen(true)}
       />
       <main>
         <Banner />
@@ -186,6 +193,19 @@ function App() {
         captainId={captainId}
         viceCaptainId={viceCaptainId}
         onRewardCoins={handleRewardCoins}
+      />
+
+      {/* BPL Tournament Standings & Trophy Room Modal */}
+      <TournamentModal
+        isOpen={tournamentModalOpen}
+        onClose={() => setTournamentModalOpen(false)}
+        selectedCount={selectedPlayers.length}
+        hasCaptain={Boolean(captainId && viceCaptainId)}
+        hasOverseas={selectedPlayers.some((p) => p.isOverseas)}
+        onOpenMatchSim={() => {
+          setTournamentModalOpen(false);
+          setMatchSimOpen(true);
+        }}
       />
 
       <ToastContainer position="top-right" autoClose={2600} newestOnTop />
