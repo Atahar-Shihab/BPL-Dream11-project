@@ -1,45 +1,121 @@
-# 🏏 BPL Dream 11 - Ultimate Fantasy Cricket
+# 🏏 BPL Dream 11 — Ultimate Fantasy Cricket Experience
 
-> Build your dream cricket team with interactive 3D stadium physics, rich Web Audio sound effects, and explosive confetti celebrations!
+> Assemble your championship squad, simulate high-stakes T20 matches, inspect 2.5D tactical pitch formations, and compete with 32 world cricket superstars!
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
-![React](https://img.shields.io/badge/React-19-61dafb.svg?logo=react)
-![Three.js](https://img.shields.io/badge/Three.js-3D-black.svg?logo=three.js)
-![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38b2ac.svg?logo=tailwind-css)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_App-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://atahar-shihab.github.io/BPL-Dream11-project/)
+[![GitHub Actions CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Pages-blue?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/Atahar-Shihab/BPL-Dream11-project/actions)
+[![React 19](https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Three.js](https://img.shields.io/badge/Three.js-3D_Engine-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.3-38b2ac?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-Welcome to the **BPL Dream 11** project! This is not just a typical player selection app; it's a fully immersive, animated, and highly polished fantasy cricket experience.
+---
 
-## ✨ Epic New Features
+## 🌟 Live Deployment
 
-- 🏟️ **Interactive 3D Stadium:** A real-time 3D cricket ball built with Three.js that responds to your mouse and scroll movements!
-- 🎵 **Synthesized Sound Engine:** Pure Web Audio API sound effects for bat shots, coin chimes, and stadium cheers. Zero external audio file dependencies!
-- 🎉 **Explosive Celebrations:** Beautiful `canvas-confetti` showers when you claim coins or complete your 6-man squad!
-- 💳 **3D Perspective Cards:** Holographic player cards that tilt and reflect light dynamically as you hover.
-- 💰 **Franchise Coin Grants:** Run out of money? Claim free sponsorship coins through the animated modal!
-- 🔍 **Advanced Filtering:** Instantly search by name, filter by role (Batsman, Bowler, etc.), and sort by rating or price.
-- 📱 **Fully Responsive:** Sleek mobile drawer, floating action buttons, and buttery smooth layout animations.
+🔗 **Experience the Live App:** [https://atahar-shihab.github.io/BPL-Dream11-project/](https://atahar-shihab.github.io/BPL-Dream11-project/)
+
+---
+
+## ✨ Features & Pro-Level Implementations
+
+### 🏟️ 1. Interactive 3D Stadium & Three.js Physics
+- **Real-Time 3D Cricket Ball**: Handcrafted leather texture with realistic white chevron seam stitches, glossy physical clearcoat reflections, and orbiting golden energy rings.
+- **Scroll & Cursor Reactivity**: The ball rotates with inertia as you move your mouse and rolls seamlessly as you scroll down the page.
+- **Volumetric Floodlight Particles**: 120 dynamic particle motes simulating stadium spotlight dust under floodlights.
+
+### 🏏 2. 2.5D Tactical Cricket Pitch Formation View
+- **Authentic Field Geometry**: Switch between **List View** and **Tactical 2.5D Pitch View** to visualize your squad on the grass.
+- **Role-Based Slotting**: Wicketkeeper behind the stumps, batsmen in the crease, all-rounders in the 30-yard circle, and strike bowlers at the bowling crease.
+- **Interactive Tokens**: Click any badge on the pitch to assign leadership roles or swap players.
+
+### 👑 3. Captain (C) & Vice-Captain (VC) Multipliers
+- **Captain (C)**: Earns **2.0x Fantasy Multiplier** with custom gold crown badge.
+- **Vice-Captain (VC)**: Earns **1.5x Fantasy Multiplier** with custom cyan star badge.
+- Live validation preventing duplicate leadership assignments.
+
+### ⚡ 4. Live BPL Match Simulator Mini-Game
+- Select an opposing BPL Franchise (*Comilla Victorians, Fortune Barishal, Rangpur Riders, Sylhet Strikers*).
+- **Over-by-Over Live Engine**: Ball-by-ball simulated scorecard (boundaries, dot balls, wickets) with real commentary.
+- **Victory Rewards**: Winning rewards **+15,000 Coins** to your balance with confetti fireworks and victory cheers!
+
+### 📊 5. Squad Tactical Analytics & League Rule Checker
+- **Team Power Index (0–100%)**: Live squad rating factoring in team balance, average ratings, and leadership.
+- **BPL Overseas Quota Check**: Validates that you never exceed the official league cap (max 4 foreign players).
+- **Mandatory Keeper Check**: Alerts you if your playing XI lacks a specialist wicketkeeper.
+- **One-Click Share & Copy**: Instant clipboard export with formatted cricket emojis.
+
+### 🖼️ 6. High-Res HTML5 Canvas Squad Poster Exporter
+- Click **"Download Poster"** to generate an off-screen 1200x680 high-resolution tournament graphic card of your Dream 11 lineup.
+- Automatically triggers a direct download as `my-bpl-dream-11.png`!
+
+### 🏆 7. BPL Tournament Standings & Trophy Room
+- **Official Points Table**: Live standings tracking matches, wins, losses, Net Run Rate (NRR), and points.
+- **Trophy Room**: Unlocks milestone achievements (*First Signature, Leadership Core, Global Star Power, Squad Complete*).
+
+### ⚔️ 8. Head-to-Head Player Comparison
+- Select any two cricketers to compare strike rate, bowling economy, career runs, wickets, and market value side-by-side with animated meters.
+
+### 🔊 9. Zero-Dependency Web Audio Sound Engine
+- Pure synthesized Web Audio API sounds:
+  - Realistic wooden bat impact "CRACK!"
+  - Melodic coin chime "CHING!"
+  - Stadium fanfare & crowd cheers
+  - Volume mute toggle in the sticky navbar.
+
+### 🌙 10. Floodlight Stadium Night Match Mode
+- One-click toggle between Day Match and Floodlight Night Match themes with sleek dark glassmorphism.
+
+---
+
+## 👥 Comprehensive 32-Player Roster
+
+Features world-class cricket icons and BPL superstars:
+- **Bangladesh**: Shakib Al Hasan, Mustafizur Rahman, Tamim Iqbal, Taskin Ahmed, Liton Das, Mahmudullah Riyad, Mehidy Hasan Miraz, Shoriful Islam, Mushfiqur Rahim, Towhid Hridoy, Najmul Hossain Shanto, Soumya Sarkar, Rishad Hossain, Hasan Mahmud, Mahedi Hasan, Tanzid Hasan Tamim.
+- **International**: Virat Kohli, Jasprit Bumrah, Babar Azam, Ben Stokes, Jos Buttler, Rashid Khan, Glenn Maxwell, Shaheen Shah Afridi, Andre Russell, Nicholas Pooran, Mohammad Rizwan, Sunil Narine, Wanindu Hasaranga, Moeen Ali, David Warner, Naseem Shah.
+
+---
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-3. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
+### 1. Clone the repository
+```bash
+git clone https://github.com/Atahar-Shihab/BPL-Dream11-project.git
+cd BPL-Dream11-project
+```
 
-## 🛠️ Tech Stack
+### 2. Install dependencies
+```bash
+npm install
+```
 
-- **React 19**
-- **Vite** (Ultra-fast build tool)
-- **Three.js** (WebGL 3D Engine)
-- **Tailwind CSS v4** (Utility-first styling)
-- **Lucide React** & **React Icons** (Beautiful iconography)
-- **Framer Motion / Vanilla JS** (Smooth physics-based animations)
+### 3. Run development server
+```bash
+npm run dev
+```
 
-## 🏆 Pull Shark Achievement
+### 4. Build for production
+```bash
+npm run build
+```
 
-This repository is designed with clean Conventional Commits. Feel free to open Pull Requests for new features to earn your GitHub Pull Shark badge!
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| **Framework** | [React 19](https://react.dev/) + [Vite](https://vite.dev/) |
+| **3D Graphics** | [Three.js](https://threejs.org/) WebGL Engine |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) + Custom Keyframe Animations |
+| **Icons** | [Lucide React](https://lucide.dev/) + [React Icons](https://react-icons.github.io/react-icons/) |
+| **Sound Engine** | Web Audio API (Synthesized Real-Time Audio) |
+| **Celebrations** | [Canvas Confetti](https://www.npmjs.com/package/canvas-confetti) |
+| **Notifications** | [React Toastify](https://fkhadra.github.io/react-toastify/) |
+| **CI / CD** | GitHub Actions Automated Pages Deployment |
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+Built with ❤️ for cricket fans and the BPL community!
