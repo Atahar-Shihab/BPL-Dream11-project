@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Crown, Star, X } from 'lucide-react';
 import { playBatShotSound, playWhooshSound } from '../../utils/soundEffects';
+import { USER_PLACEHOLDER } from '../../utils/assets';
 
 const CricketPitchView = ({
   selectedPlayers,
@@ -100,7 +101,7 @@ const CricketPitchView = ({
                       alt={player.playerName}
                       className="w-full h-full rounded-full object-cover object-top bg-neutral-800"
                       onError={(e) => {
-                        e.currentTarget.src = '/assets/user.png';
+                        e.currentTarget.src = USER_PLACEHOLDER;
                       }}
                     />
 

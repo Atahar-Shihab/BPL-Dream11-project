@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { X, Shield, Star, Award, Zap, Activity, Check, Plus } from 'lucide-react';
 import { playBatShotSound, playWhooshSound } from '../../utils/soundEffects';
+import { USER_PLACEHOLDER } from '../../utils/assets';
 
 const PlayerModal = ({
   player,
@@ -63,7 +64,7 @@ const PlayerModal = ({
                 alt={player.playerName}
                 className="w-full h-full object-cover object-top"
                 onError={(e) => {
-                  e.currentTarget.src = '/assets/user.png';
+                  e.currentTarget.src = USER_PLACEHOLDER;
                 }}
               />
               <span className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded-md bg-black/80 text-[10px] font-black text-yellow-300">

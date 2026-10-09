@@ -4,6 +4,7 @@ import { Eye } from 'lucide-react';
 import TiltCard3D from '../common/TiltCard3D';
 import PlayerModal from '../modals/PlayerModal';
 import { playBatShotSound } from '../../utils/soundEffects';
+import { USER_PLACEHOLDER } from '../../utils/assets';
 
 const AvailablePlayer = ({ player, isSelected, isAtLimit, onAddPlayer, onRemovePlayer, style }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,7 +19,7 @@ const AvailablePlayer = ({ player, isSelected, isAtLimit, onAddPlayer, onRemoveP
               alt={player.playerName}
               className="player-photo"
               loading="lazy"
-              onError={(event) => { event.currentTarget.src = '/assets/user.png'; }}
+              onError={(event) => { event.currentTarget.src = USER_PLACEHOLDER; }}
             />
             {/* Hover overlay with quick-view */}
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">

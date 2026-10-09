@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, ArrowRightLeft, Star, Swords, Award, TrendingUp } from 'lucide-react';
 import { playWhooshSound } from '../../utils/soundEffects';
+import { USER_PLACEHOLDER } from '../../utils/assets';
 
 const PlayerCompareModal = ({ isOpen, onClose, allPlayers }) => {
   const [player1Id, setPlayer1Id] = useState(allPlayers[0]?.id || 1);
@@ -105,7 +106,7 @@ const PlayerCompareModal = ({ isOpen, onClose, allPlayers }) => {
               src={p1.playerImg}
               alt=""
               className="w-16 h-16 rounded-2xl object-cover object-top border-2 border-yellow-400/60 bg-neutral-800 shadow-md"
-              onError={(e) => { e.currentTarget.src = '/assets/user.png'; }}
+              onError={(e) => { e.currentTarget.src = USER_PLACEHOLDER; }}
             />
             <h4 className="font-extrabold text-sm mt-2 text-white">{p1.playerName}</h4>
             <span className="text-[10px] text-neutral-400">{p1.playerCountry} · {p1.playerType}</span>
@@ -117,7 +118,7 @@ const PlayerCompareModal = ({ isOpen, onClose, allPlayers }) => {
               src={p2.playerImg}
               alt=""
               className="w-16 h-16 rounded-2xl object-cover object-top border-2 border-cyan-400/60 bg-neutral-800 shadow-md"
-              onError={(e) => { e.currentTarget.src = '/assets/user.png'; }}
+              onError={(e) => { e.currentTarget.src = USER_PLACEHOLDER; }}
             />
             <h4 className="font-extrabold text-sm mt-2 text-white">{p2.playerName}</h4>
             <span className="text-[10px] text-neutral-400">{p2.playerCountry} · {p2.playerType}</span>

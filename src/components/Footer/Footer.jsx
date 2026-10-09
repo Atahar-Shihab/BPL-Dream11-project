@@ -1,5 +1,6 @@
 import { Heart, Globe, ChevronUp, ExternalLink, Code2, MessageCircle } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollAnimations';
+import { LOGO_FOOTER } from '../../utils/assets';
 
 const Footer = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 });
@@ -22,7 +23,7 @@ const Footer = () => {
         {/* Top section */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-8 border-b border-white/10">
           <div className="flex flex-col items-center sm:items-start gap-3">
-            <img src="/assets/logo-footer.png" alt="Cricket" className="footer-logo" />
+            <img src={LOGO_FOOTER} alt="Cricket" className="footer-logo" />
             <p className="text-white/60 text-sm max-w-xs text-center sm:text-left">
               Build your dream cricket team, one player at a time. Compete with the best.
             </p>

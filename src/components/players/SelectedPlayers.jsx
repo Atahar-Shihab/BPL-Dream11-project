@@ -6,6 +6,7 @@ import { triggerGrandCelebration } from '../../utils/confetti';
 import { useStaggerReveal } from '../../hooks/useScrollAnimations';
 import CricketPitchView from './CricketPitchView';
 import TeamAnalytics from './TeamAnalytics';
+import { USER_PLACEHOLDER } from '../../utils/assets';
 
 const SelectedPlayers = ({
   players,
@@ -147,7 +148,7 @@ const SelectedPlayers = ({
                     alt=""
                     className="selected-player-image"
                     loading="lazy"
-                    onError={(e) => { e.currentTarget.src = '/assets/user.png'; }}
+                    onError={(e) => { e.currentTarget.src = USER_PLACEHOLDER; }}
                   />
                   {isCaptain && (
                     <span className="absolute -top-1.5 -left-1.5 px-1.5 py-0.5 rounded-full bg-yellow-400 text-neutral-950 text-[10px] font-black shadow border border-white">
