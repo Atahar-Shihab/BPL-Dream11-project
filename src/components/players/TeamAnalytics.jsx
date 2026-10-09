@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
-import { ShieldCheck, AlertTriangle, Zap, DollarSign, Globe, Award, Share2 } from 'lucide-react';
+import { ShieldCheck, AlertTriangle, Zap, DollarSign, Globe, Award, Share2, Download } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { playCoinSound } from '../../utils/soundEffects';
+import { playCoinSound, playCheerSound } from '../../utils/soundEffects';
+import { generateSquadPoster } from '../../utils/posterExporter';
 
 const TeamAnalytics = ({
   selectedPlayers,
@@ -67,6 +68,22 @@ const TeamAnalytics = ({
     toast.success('Squad roster copied to clipboard!');
   };
 
+  const handleDownloadPoster = async () => {
+    try {
+      playCheerSound();
+      toast.info('Generating high-res squad poster...');
+      await generateSquadPoster({
+        selectedPlayers,
+        captainId,
+        viceCaptainId,
+        teamPower: stats.powerScore,
+      });
+      toast.success('Downloaded my-bpl-dream-11.png!');
+    } catch {
+      toast.error('Failed to generate poster.');
+    }
+  };
+
   if (!selectedPlayers.length) return null;
 
   return (
@@ -88,7 +105,16 @@ const TeamAnalytics = ({
             onClick={copySquadToClipboard}
             className="px-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-bold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition flex items-center gap-1.5"
           >
-            <Share2 className="w-3.5 h-3.5" /> Share Squad
+            <Share2 className="w-3.5 h-3.5" /> Share
+          </button>
+
+          <button
+            type="button"
+            onClick={handleDownloadPoster}
+            className="px-3 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-bold hover:bg-neutral-100 dark:hover:bg-neutral-700 transition flex items-center gap-1.5"
+            title="Download high-resolution squad poster image"
+          >
+            <Download className="w-3.5 h-3.5 text-yellow-500" /> Download Poster
           </button>
 
           {selectedPlayers.length >= 4 && (
